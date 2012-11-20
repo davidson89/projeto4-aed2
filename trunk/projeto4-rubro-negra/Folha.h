@@ -8,8 +8,8 @@ public:
     char cor;
     Folha *folhaDir;
     Folha *folhaEsq;
-    void setCor(Folha f, char c);
-    char getCor(Folha f);
+    void setCor(Folha *f, char c);
+    char getCor(Folha *f);
 };
 
 #endif	/* FOLHA_H */
