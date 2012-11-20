@@ -10,7 +10,7 @@ public:
     void busca(int valor);
     void printTree();
 private:
-    RubroNegra *pai;
+    Folha *pai;
     Folha* rotacionaParaDireita(Folha *f);
     Folha* rotacionaParaEsquerda(Folha *f);
     void printPreOrdem(Folha *f);

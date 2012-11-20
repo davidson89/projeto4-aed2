@@ -8,10 +8,10 @@ Folha::Folha(int valor) {
     this->folhaEsq = NULL;
 }
 
-Folha::setCor(Folha *f, char c) {
+void Folha::setCor(Folha *f, char c) {
     f->cor = c;
 }
 
-Folha::getCor(Folha *f) {
+char Folha::getCor(Folha *f) {
     return f->cor;
 }
