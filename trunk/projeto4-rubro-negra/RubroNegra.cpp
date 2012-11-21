@@ -10,15 +10,36 @@ RubroNegra::RubroNegra() {
 
 void RubroNegra::add(int valor) {
     if (this->pai == NULL) {
-        Folha *folha = new Folha(valor);
-        this->pai = folha;
-        folha->cor == 'p';
+        this->pai = new Folha(valor);
+        this->pai->cor == 'p';
+    } else insereRecursivo(this->pai, valor);
+}
+
+void RubroNegra::insereRecursivo(Folha* f, int valor) {
+    if (valor < f.valor) {
+        if (f->folhaEsq == NULL) f->folhaEsq = new Folha(valor);
+        else return insereRecursivo(f->folhaEsq, valor);
     }
-    //continuar
+    if (valor > f.valor) {
+        if (f->folhaDir == NULL) f->folhaDir = new Folha(valor);
+        else return insereRecursivo(f->folhaDir, valor);
+    }
+    //chamar um metodo para verificar integridade da arvore e fazer as devidas rotacoes e alteracoes de cor
 }
 
 void RubroNegra::busca(int valor) {
+    buscaRecursiva(this->pai, valor);
+}
 
+void RubroNegra::buscaRecursiva(Folha* f, int valor) {
+    if (f == NULL) return;
+    if (valor < f->valor) {
+        cout << f->valor << ";";
+        return buscaRecursiva(f->folhaEsq, valor);
+    } else if (valor > f.valor) {
+        cout << f->valor << ";";
+        return buscaRecursiva(f->folhaDir, valor);
+    } else cout << f->valor << ";";
 }
 
 void RubroNegra::printTree() {
