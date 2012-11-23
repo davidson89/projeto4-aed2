@@ -10,8 +10,7 @@ public:
     void busca(int valor);
     void printTree();
 private:
-    Folha *pai;
-    Folha *nil;
+    Folha *raiz;
     void insereRecursivo(Folha *f, int valor);
     void buscaRecursiva(Folha *f, int valor);
     Folha* rotacionaParaDireita(Folha *f);
