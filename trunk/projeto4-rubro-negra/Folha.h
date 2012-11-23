@@ -9,9 +9,6 @@ public:
     Folha *pai;
     Folha *folhaDir;
     Folha *folhaEsq;
-    Folha *nil;
-    void setCor(Folha *f, char c);
-    char getCor(Folha *f);
 };
 
 #endif	/* FOLHA_H */

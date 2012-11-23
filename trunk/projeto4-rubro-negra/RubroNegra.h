@@ -6,9 +6,9 @@ class RubroNegra {
 public:
     RubroNegra();
     virtual ~RubroNegra();
-    void add(int valor);
+    void insere(int valor);
     void busca(int valor);
-    void printTree();
+    void imprimeArvore();
 private:
     Folha *raiz;
     void insereRecursivo(Folha *f, int valor);
@@ -16,6 +16,7 @@ private:
     Folha* rotacionaParaDireita(Folha *f);
     Folha* rotacionaParaEsquerda(Folha *f);
     void printPreOrdem(Folha *f);
+    void desalocaArvore(Folha *f);
 };
 
 #endif	/* RUBRONEGRA_H */

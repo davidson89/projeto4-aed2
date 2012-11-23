@@ -19,8 +19,8 @@ int main(int argc, char** argv) {
         fscanf(arq, "%d", &valor);
         if (comando == 'i') {
             cout << "> " << comando << " " << valor << endl;
-            arvore->add(valor);
-            arvore->printTree();
+            arvore->insere(valor);
+            arvore->imprimeArvore();
             cout << endl;
         }
         if (comando == 'b') {
