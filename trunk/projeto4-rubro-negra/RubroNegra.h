@@ -11,7 +11,9 @@ public:
     void imprimeArvore();
 private:
     Folha *raiz;
+    Folha *nil;
     void insereRecursivo(Folha *f, int valor);
+    void insereNil(Folha *f);
     void buscaRecursiva(Folha *f, int valor);
     Folha* rotacionaParaDireita(Folha *f);
     Folha* rotacionaParaEsquerda(Folha *f);
