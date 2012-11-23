@@ -25,7 +25,11 @@ void RubroNegra::insere_recursivo(Folha* f, int valor) {
         if (f->folhaDir == this->nil) f->folhaDir = new Folha(valor, f, this->nil);
         else insere_recursivo(f->folhaDir, valor);
     }
-    //chamar um metodo para verificar integridade da arvore e fazer as devidas rotacoes e alteracoes de cor
+    return rb_fixup();
+}
+
+void RubroNegra::rb_fixup() {
+
 }
 
 void RubroNegra::rot_esq(Folha *f) {
