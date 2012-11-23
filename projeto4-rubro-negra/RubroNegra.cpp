@@ -5,14 +5,14 @@
 using namespace std;
 
 RubroNegra::RubroNegra() {
-    this->pai = NULL;
+    this->raiz = NULL;
 }
 
 void RubroNegra::add(int valor) {
-    if (this->pai == NULL) {
-        this->pai = new Folha(valor);
-        this->pai->cor == 'p';
-    } else insereRecursivo(this->pai, valor);
+    if (this->raiz == NULL) {
+        this->raiz = new Folha(valor);
+        this->raiz->cor == 'p';
+    } else insereRecursivo(this->raiz, valor);
 }
 
 void RubroNegra::insereRecursivo(Folha* f, int valor) {
@@ -28,7 +28,7 @@ void RubroNegra::insereRecursivo(Folha* f, int valor) {
 }
 
 void RubroNegra::busca(int valor) {
-    buscaRecursiva(this->pai, valor);
+    buscaRecursiva(this->raiz, valor);
 }
 
 void RubroNegra::buscaRecursiva(Folha* f, int valor) {
@@ -43,11 +43,11 @@ void RubroNegra::buscaRecursiva(Folha* f, int valor) {
 }
 
 void RubroNegra::printTree() {
-    printPreOrdem(this->pai);
+    printPreOrdem(this->raiz);
 }
 
 void RubroNegra::printPreOrdem(Folha *f) {
-    if (this->pai == NULL) cout << "()";
+    if (this->raiz == NULL) cout << "()";
     else {
         cout << "(" << f->valor << f->cor << ",";
         printPreOrdem(f->folhaEsq);
