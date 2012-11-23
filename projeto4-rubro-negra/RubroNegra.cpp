@@ -8,21 +8,22 @@ RubroNegra::RubroNegra() {
     this->raiz = NULL;
 }
 
-void RubroNegra::add(int valor) {
+void RubroNegra::insere(int valor) {
     if (this->raiz == NULL) {
         this->raiz = new Folha(valor);
-        this->raiz->cor == 'p';
+        this->raiz->pai = NULL;
+        this->raiz->cor = 'p';
     } else insereRecursivo(this->raiz, valor);
 }
 
 void RubroNegra::insereRecursivo(Folha* f, int valor) {
-    if (valor < f.valor) {
+    if (valor < f->valor) {
         if (f->folhaEsq == NULL) f->folhaEsq = new Folha(valor);
-        else return insereRecursivo(f->folhaEsq, valor);
+        else insereRecursivo(f->folhaEsq, valor);
     }
-    if (valor > f.valor) {
+    if (valor > f->valor) {
         if (f->folhaDir == NULL) f->folhaDir = new Folha(valor);
-        else return insereRecursivo(f->folhaDir, valor);
+        else insereRecursivo(f->folhaDir, valor);
     }
     //chamar um metodo para verificar integridade da arvore e fazer as devidas rotacoes e alteracoes de cor
 }
@@ -35,19 +36,19 @@ void RubroNegra::buscaRecursiva(Folha* f, int valor) {
     if (f == NULL) return;
     if (valor < f->valor) {
         cout << f->valor << ";";
-        return buscaRecursiva(f->folhaEsq, valor);
-    } else if (valor > f.valor) {
+        buscaRecursiva(f->folhaEsq, valor);
+    } else if (valor > f->valor) {
         cout << f->valor << ";";
-        return buscaRecursiva(f->folhaDir, valor);
+        buscaRecursiva(f->folhaDir, valor);
     } else cout << f->valor << ";";
 }
 
-void RubroNegra::printTree() {
+void RubroNegra::imprimeArvore() {
     printPreOrdem(this->raiz);
 }
 
 void RubroNegra::printPreOrdem(Folha *f) {
-    if (this->raiz == NULL) cout << "()";
+    if (f == NULL) cout << "()";
     else {
         cout << "(" << f->valor << f->cor << ",";
         printPreOrdem(f->folhaEsq);
@@ -57,5 +58,14 @@ void RubroNegra::printPreOrdem(Folha *f) {
     }
 }
 
+void RubroNegra::desalocaArvore(Folha *f) {
+    if (f != NULL) {
+        desalocaArvore(f->folhaEsq);
+        desalocaArvore(f->folhaDir);
+    }
+    delete f;
+}
+
 RubroNegra::~RubroNegra() {
+    desalocaArvore(this->raiz);
 }
