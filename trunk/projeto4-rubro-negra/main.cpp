@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
         if (comando == 'i') {
             cout << "> " << comando << " " << valor << endl;
             arvore->insere(valor);
-            arvore->imprimeArvore();
+            arvore->imprime_arvore();
             cout << endl;
         }
         if (comando == 'b') {

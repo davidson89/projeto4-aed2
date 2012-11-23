@@ -11,62 +11,69 @@ RubroNegra::RubroNegra() {
 
 void RubroNegra::insere(int valor) {
     if (this->raiz == NULL) {
-        this->raiz = new Folha(valor, this->nil);
-        this->raiz->pai = NULL;
+        this->raiz = new Folha(valor, NULL, this->nil);
         this->raiz->cor = 'p';
-    } else insereRecursivo(this->raiz, valor);
+    } else insere_recursivo(this->raiz, valor);
 }
 
-void RubroNegra::insereRecursivo(Folha* f, int valor) {
+void RubroNegra::insere_recursivo(Folha* f, int valor) {
     if (valor < f->valor) {
-        if (f->folhaEsq == this->nil) f->folhaEsq = new Folha(valor, this->nil);
-        else insereRecursivo(f->folhaEsq, valor);
+        if (f->folhaEsq == this->nil) f->folhaEsq = new Folha(valor, f, this->nil);
+        else insere_recursivo(f->folhaEsq, valor);
     }
     if (valor > f->valor) {
-        if (f->folhaDir == this->nil) f->folhaDir = new Folha(valor, this->nil);
-        else insereRecursivo(f->folhaDir, valor);
+        if (f->folhaDir == this->nil) f->folhaDir = new Folha(valor, f, this->nil);
+        else insere_recursivo(f->folhaDir, valor);
     }
     //chamar um metodo para verificar integridade da arvore e fazer as devidas rotacoes e alteracoes de cor
 }
 
-void RubroNegra::busca(int valor) {
-    buscaRecursiva(this->raiz, valor);
+void RubroNegra::rot_esq(Folha *f) {
+
 }
 
-void RubroNegra::buscaRecursiva(Folha* f, int valor) {
+void RubroNegra::rot_dir(Folha *f) {
+
+}
+
+void RubroNegra::busca(int valor) {
+    busca_recursiva(this->raiz, valor);
+}
+
+void RubroNegra::busca_recursiva(Folha* f, int valor) {
     if (f == this->nil) return;
     if (valor < f->valor) {
         cout << f->valor << ";";
-        buscaRecursiva(f->folhaEsq, valor);
+        busca_recursiva(f->folhaEsq, valor);
     } else if (valor > f->valor) {
         cout << f->valor << ";";
-        buscaRecursiva(f->folhaDir, valor);
+        busca_recursiva(f->folhaDir, valor);
     } else cout << f->valor << ";";
 }
 
-void RubroNegra::imprimeArvore() {
-    printPreOrdem(this->raiz);
+void RubroNegra::imprime_arvore() {
+    imprime_pre_ordem(this->raiz);
 }
 
-void RubroNegra::printPreOrdem(Folha *f) {
+void RubroNegra::imprime_pre_ordem(Folha *f) {
     if (f == this->nil) cout << "()";
     else {
         cout << "(" << f->valor << f->cor << ",";
-        printPreOrdem(f->folhaEsq);
+        imprime_pre_ordem(f->folhaEsq);
         cout << ",";
-        printPreOrdem(f->folhaDir);
+        imprime_pre_ordem(f->folhaDir);
         cout << ")";
     }
 }
 
-void RubroNegra::desalocaArvore(Folha *f) {
+void RubroNegra::desaloca_arvore(Folha *f) {
     if (f != this->nil) {
-        desalocaArvore(f->folhaEsq);
-        desalocaArvore(f->folhaDir);
+        desaloca_arvore(f->folhaEsq);
+        desaloca_arvore(f->folhaDir);
     }
     delete f;
 }
 
 RubroNegra::~RubroNegra() {
-    desalocaArvore(this->raiz);
+    desaloca_arvore(this->raiz);
 }

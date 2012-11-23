@@ -4,7 +4,7 @@
 class Folha {
 public:
     Folha();
-    Folha(int valor, Folha *nil);
+    Folha(int valor, Folha *pai, Folha *nil);
     int valor;
     char cor;
     bool ehNil;
