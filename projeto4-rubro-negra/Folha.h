@@ -3,9 +3,11 @@
 
 class Folha {
 public:
-    Folha(int valor);
+    Folha();
+    Folha(int valor, Folha *nil);
     int valor;
     char cor;
+    bool ehNil;
     Folha *pai;
     Folha *folhaDir;
     Folha *folhaEsq;
