@@ -8,17 +8,17 @@ public:
     virtual ~RubroNegra();
     void insere(int valor);
     void busca(int valor);
-    void imprimeArvore();
+    void imprime_arvore();
 private:
     Folha *raiz;
     Folha *nil;
-    void insereRecursivo(Folha *f, int valor);
-    void insereNil(Folha *f);
-    void buscaRecursiva(Folha *f, int valor);
-    Folha* rotacionaParaDireita(Folha *f);
-    Folha* rotacionaParaEsquerda(Folha *f);
-    void printPreOrdem(Folha *f);
-    void desalocaArvore(Folha *f);
+    void insere_recursivo(Folha *f, int valor);
+    void busca_recursiva(Folha *f, int valor);
+    void rot_esq(Folha *f);
+    void rot_dir(Folha *f);
+    void rb_fixup();
+    void imprime_pre_ordem(Folha *f);
+    void desaloca_arvore(Folha *f);
 };
 
 #endif	/* RUBRONEGRA_H */
