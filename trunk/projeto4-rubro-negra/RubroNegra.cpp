@@ -34,6 +34,25 @@ void RubroNegra::rb_fixup() {
 
 void RubroNegra::rot_esq(Folha *f) {
 
+	Folha *aux = f->folhaDir;
+	f->folhaDir = aux->folhaEsq;
+	if ( aux->folhaEsq != this->nil )
+	{
+		aux->folhaEsq->pai = f;
+	}
+	aux->pai = f->pai;
+	if(f->pai == this->nil)
+	{
+		this->raiz = aux;
+	} else 
+	{
+		if(f == f->folhaEsq->pai)f->folhaEsq->pai=aux;
+		else f->folhaDir->pai = aux;
+	}
+
+	aux->folhaEsq = f;
+	f->pai = aux;
+
 }
 
 void RubroNegra::rot_dir(Folha *f) {
