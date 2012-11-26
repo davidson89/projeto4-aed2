@@ -16,7 +16,7 @@ private:
     void busca_recursiva(Folha *f, int valor);
     void rot_esq(Folha *f);
     void rot_dir(Folha *f);
-    void rb_fixup();
+    void rb_fixup(Folha *f);
     void imprime_pre_ordem(Folha *f);
     void desaloca_arvore(Folha *f);
 };
