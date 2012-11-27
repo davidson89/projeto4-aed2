@@ -56,6 +56,7 @@ void RubroNegra::rb_fixup(Folha *f) {
                 f->pai->cor = 'p'; //pai vira preto
                 aux->cor = 'p'; //tio vermelho vira preto
                 f->pai->pai->cor = 'v'; //avô vira vermelho
+                f = f->pai->pai; //continuando o processo a partir do avô
             } else {
                 if (f == f->pai->folhaDir) { //caso 2: f é filho direito
                     f = f->pai;
@@ -71,6 +72,7 @@ void RubroNegra::rb_fixup(Folha *f) {
                 f->pai->cor = 'p'; //pai vira preto
                 aux->cor = 'p'; //tio vermelho vira preto
                 f->pai->pai->cor = 'v'; //avô vira vermelho
+                f = f->pai->pai; //continuando o processo a partir do avô
             } else {
                 if (f == f->pai->folhaEsq) { //caso 2: f é filho esquerdo
                     f = f->pai;
