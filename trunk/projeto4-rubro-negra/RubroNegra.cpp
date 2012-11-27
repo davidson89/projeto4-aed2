@@ -65,7 +65,7 @@ void RubroNegra::rb_fixup(Folha *f) {
                 f->pai->pai->cor = 'v'; //avô vira vermelho
                 rot_dir(f->pai->pai); //rotaciona à direita no avô de f
             }
-        } else {
+        } else { //pai de f é filho direito
             Folha *aux = f->pai->pai->folhaEsq; //aux aponta pro tio de f
             if (aux->cor = 'v') { //caso 1: tio vermelho
                 f->pai->cor = 'p'; //pai vira preto
