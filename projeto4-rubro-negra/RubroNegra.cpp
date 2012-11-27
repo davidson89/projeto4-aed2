@@ -5,7 +5,7 @@
 using namespace std;
 
 /**
- * RubroNegra - Construtor. Faz o ponteiro para a raiz da árvore apontar para nulo e cria a primeira instância da classe Folha, o objeto nil.
+ * Construtor. Faz o ponteiro para a raiz da árvore apontar para nulo e cria a primeira instância da classe Folha, o objeto nil.
  **/
 RubroNegra::RubroNegra() {
     this->raiz = NULL;
@@ -13,7 +13,7 @@ RubroNegra::RubroNegra() {
 }
 
 /**
- * insere - Caso a árvore não possua nenhum nó um nó é criado fazendo com que o ponteiro raiz aponte para esse nó. Caso a árvore já possua um nó o método insere_recursivo é invocado.
+ * Caso a árvore não possua nenhum nó um nó é criado fazendo com que o ponteiro raiz aponte para esse nó. Caso a árvore já possua um nó o método insere_recursivo é invocado.
  * @param valor a ser inserido.
  **/
 void RubroNegra::insere(int valor) {
@@ -24,8 +24,8 @@ void RubroNegra::insere(int valor) {
 }
 
 /**
- * insere_recursivo - Percorre a árvore recursivamente procurando o local onde o novo nó deve ser inserido. Após inserir invoca o método rb_fixup.
- * @param raiz da árvore / subárvore.
+ * Percorre a árvore recursivamente procurando o local onde o novo nó deve ser inserido. Após inserir invoca o método rb_fixup.
+ * @param nó raiz da árvore / subárvore.
  * @param valor a ser inserido.
  **/
 void RubroNegra::insere_recursivo(Folha* f, int valor) {
@@ -45,7 +45,7 @@ void RubroNegra::insere_recursivo(Folha* f, int valor) {
 }
 
 /**
- * rb_fixup - Reestrutura a árvore de acordo com o que for necessário (mudança de cor e/ou rotação) para manter as propriedades da árvore Rubro Negra.
+ * Reestrutura a árvore de acordo com o que for necessário (mudança de cor e/ou rotação) para manter as propriedades da árvore Rubro Negra.
  * @param nó a ser verificado.
  **/
 void RubroNegra::rb_fixup(Folha *f) {
@@ -86,8 +86,8 @@ void RubroNegra::rb_fixup(Folha *f) {
 }
 
 /**
- * rot_esq - Rotaciona a árvore / subárvore para a esquerda.
- * @param raiz da árvore / subárvore.
+ * Rotaciona a árvore / subárvore para a esquerda.
+ * @param nó raiz da árvore / subárvore.
  **/
 void RubroNegra::rot_esq(Folha *f) {
     Folha *aux = f->folhaDir;
@@ -107,8 +107,8 @@ void RubroNegra::rot_esq(Folha *f) {
 }
 
 /**
- * rot_dir - Rotaciona a árvore / subárvore para a direita.
- * @param raiz da árvore / subárvore.
+ * Rotaciona a árvore / subárvore para a direita.
+ * @param nó raiz da árvore / subárvore.
  **/
 void RubroNegra::rot_dir(Folha *f) {
     Folha *aux = f->folhaEsq;
@@ -128,7 +128,7 @@ void RubroNegra::rot_dir(Folha *f) {
 }
 
 /**
- * busca - Invoca o métodos busca_recursiva passando como parâmetros o ponteiro para raiz da árvore e o número a ser procurado.
+ * Invoca o métodos busca_recursiva passando como parâmetros o ponteiro para raiz da árvore e o número a ser procurado.
  * @param valor a ser procurado.
  **/
 void RubroNegra::busca(int valor) {
@@ -136,8 +136,8 @@ void RubroNegra::busca(int valor) {
 }
 
 /**
- * busca_recursiva - Percorre a árvore recursivamente imprimindo seu caminho na procura por um determinado valor.
- * @param raiz da árvore / subárvore.
+ * Percorre a árvore recursivamente imprimindo seu caminho na procura por um determinado valor.
+ * @param nó raiz da árvore / subárvore.
  * @param valor a ser procurado.
  **/
 void RubroNegra::busca_recursiva(Folha* f, int valor) {
@@ -152,15 +152,15 @@ void RubroNegra::busca_recursiva(Folha* f, int valor) {
 }
 
 /**
- * imprime_arvore - Invoca o método imprime_pre_ordem.
+ * Invoca o método imprime_pre_ordem.
  **/
 void RubroNegra::imprime_arvore() {
     imprime_pre_ordem(this->raiz);
 }
 
 /**
- * imprime_pre_ordem - Percorre árvore recursivamente a partir do nó raiz imprimindo o caminho realizado.
- * @param raiz da árvore / subárvore.
+ * Percorre árvore recursivamente a partir do nó raiz imprimindo o caminho realizado.
+ * @param nó raiz da árvore / subárvore.
  **/
 void RubroNegra::imprime_pre_ordem(Folha *f) {
     if (f == this->nil) cout << "()";
@@ -174,19 +174,19 @@ void RubroNegra::imprime_pre_ordem(Folha *f) {
 }
 
 /**
- * desaloca_arvore - Percorre a árvore recursivamente a partir do nó raiz desalocando todoas as instâncias da classe Folha, menos o objeto nil.
- * @param raiz da árvore / subárvore.
+ * Percorre a árvore recursivamente a partir do nó raiz desalocando todoas as instâncias da classe Folha, menos o objeto nil.
+ * @param nó raiz da árvore / subárvore.
  **/
 void RubroNegra::desaloca_arvore(Folha *f) {
     if (!f->ehNil) {
         desaloca_arvore(f->folhaEsq);
         desaloca_arvore(f->folhaDir);
+        delete f;
     }
-    if (!f->ehNil) delete f;
 }
 
 /**
- * ~RubroNegra - Destrutor. Desaloca todos as instâncias da classe Folha através do método desaloca_arvore. Também desaloca o objeto nil.
+ * Destrutor. Desaloca todos as instâncias da classe Folha através do método desaloca_arvore. Também desaloca o objeto nil.
  **/
 RubroNegra::~RubroNegra() {
     desaloca_arvore(this->raiz);

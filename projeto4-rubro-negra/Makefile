@@ -18,4 +18,4 @@ doxygen:
 	doxygen -g
 	sed -i 's/EXTRACT_PRIVATE        = NO/EXTRACT_PRIVATE        = YES/g' Doxyfile
 	doxygen
-	@echo "\n***** Diretório html criado com sucesso. Contém toda documentação das classes *****\n"
+	@echo "\n***** O diretório html foi criado com sucesso, e contém toda documentação das classes *****\n"
