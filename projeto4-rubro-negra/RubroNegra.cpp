@@ -95,14 +95,14 @@ void RubroNegra::rot_esq(Folha *f) {
     Folha *aux = f->folhaDir;
     f->folhaDir = aux->folhaEsq;
     if (aux->folhaEsq != this->nil) {
-        aux->folhaEsq->pai = f;
+        aux->pai->folhaEsq = f;
     }
     aux->pai = f->pai;
     if (f->pai == this->nil) {
         this->raiz = aux;
     } else {
-        if (f == f->folhaEsq->pai) f->folhaEsq->pai = aux;
-        else f->folhaDir->pai = aux;
+        if (f == f->pai->folhaEsq) f->pai->folhaEsq = aux;
+        else f->pai->folhaDir = aux;
     }
     aux->folhaEsq = f;
     f->pai = aux;
@@ -116,14 +116,14 @@ void RubroNegra::rot_dir(Folha *f) {
     Folha *aux = f->folhaEsq;
     f->folhaEsq = aux->folhaDir;
     if (aux->folhaDir != this->nil) {
-        aux->folhaDir->pai = f;
+        aux->pai->folhaDir = f;
     }
     aux->pai = f->pai;
     if (f->pai == this->nil) {
         this->raiz = aux;
     } else {
-        if (f == f->folhaDir->pai) f->folhaDir->pai = aux;
-        else f->folhaEsq->pai = aux;
+        if (f == f->pai->folhaDir) f->pai->folhaDir = aux;
+        else f->pai->folhaDir = aux;
     }
     aux->folhaDir = f;
     f->pai = aux;
