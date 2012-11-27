@@ -18,14 +18,18 @@ void RubroNegra::insere(int valor) {
 
 void RubroNegra::insere_recursivo(Folha* f, int valor) {
     if (valor < f->valor) {
-        if (f->folhaEsq == this->nil) f->folhaEsq = new Folha(valor, f, this->nil);
-        else insere_recursivo(f->folhaEsq, valor);
+        if (f->folhaEsq == this->nil) {
+            Folha *aux = new Folha(valor, f, this->nil);
+            f->folhaEsq = aux;
+            return rb_fixup(aux);
+        } else insere_recursivo(f->folhaEsq, valor);
+    } else if (valor > f->valor) {
+        if (f->folhaDir == this->nil) {
+            Folha *aux = new Folha(valor, f, this->nil);
+            f->folhaDir = aux;
+            return rb_fixup(aux);
+        } else insere_recursivo(f->folhaDir, valor);
     }
-    if (valor > f->valor) {
-        if (f->folhaDir == this->nil) f->folhaDir = new Folha(valor, f, this->nil);
-        else insere_recursivo(f->folhaDir, valor);
-    }
-    return rb_fixup(f);
 }
 
 void RubroNegra::rb_fixup(Folha *f) {
@@ -33,36 +37,30 @@ void RubroNegra::rb_fixup(Folha *f) {
         if (f->pai == f->pai->pai->folhaEsq) { //pai de f é filho esquerdo
             Folha *aux = f->pai->pai->folhaDir; //aux aponta pro tio de f
             if (aux->cor = 'v') { //caso 1: tio vermelho
-                cout << "caso 1: tio vermelho" << endl;
-                aux->pai->cor = 'p';
+                f->pai->cor = 'p';
                 aux->cor = 'p'; //tio vermelho vira preto
                 f->pai->pai->cor = 'v'; //avô vira vermelho
             } else {
                 if (f == f->pai->folhaDir) { //caso 2: f é filho direito
-                    cout << "caso 2: f é filho direito" << endl;
                     f = f->pai;
                     rot_esq(f); //rotaciona à esquerda no pai de f
                 }
                 f->pai->cor = 'p'; //caso 3: f é filho esquerdo
-                cout << "caso 3: f é filho esquerdo" << endl;
                 f->pai->pai->cor = 'v'; //avô vira vermelho
                 rot_dir(f->pai->pai); //rotaciona à direita no avô de f
             }
         } else {
             Folha *aux = f->pai->pai->folhaEsq; //aux aponta pro tio de f
             if (aux->cor = 'v') { //caso 1: tio vermelho
-                cout << "caso 4: tio preto" << endl;
-                aux->pai->cor = 'p';
+                f->pai->cor = 'p';
                 aux->cor = 'p'; //tio vermelho vira preto
                 f->pai->pai->cor = 'v'; //avô vira vermelho
             } else {
                 if (f == f->pai->folhaEsq) { //caso 2: f é filho esquerdo
-                    cout << "caso 5" << endl;
                     f = f->pai;
                     rot_dir(f); //rotaciona à direita no pai de f
                 }
                 f->pai->cor = 'p'; //caso 3: f é filho direito
-                cout << "caso 6" << endl;
                 f->pai->pai->cor = 'v'; //avô vira vermelho
                 rot_esq(f->pai->pai); //rotaciona à esquerda no avô de f
             }
@@ -136,13 +134,14 @@ void RubroNegra::imprime_pre_ordem(Folha *f) {
 }
 
 void RubroNegra::desaloca_arvore(Folha *f) {
-    if (f != this->nil) {
+    if (!f->ehNil) {
         desaloca_arvore(f->folhaEsq);
         desaloca_arvore(f->folhaDir);
     }
-    delete f;
+    if (!f->ehNil) delete f;
 }
 
 RubroNegra::~RubroNegra() {
     desaloca_arvore(this->raiz);
+    delete nil;
 }
