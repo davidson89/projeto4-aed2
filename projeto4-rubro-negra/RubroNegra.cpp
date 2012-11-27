@@ -123,7 +123,7 @@ void RubroNegra::rot_dir(Folha *f) {
         this->raiz = aux;
     } else {
         if (f == f->pai->folhaDir) f->pai->folhaDir = aux;
-        else f->pai->folhaDir = aux;
+        else f->pai->folhaEsq = aux;
     }
     aux->folhaDir = f;
     f->pai = aux;
