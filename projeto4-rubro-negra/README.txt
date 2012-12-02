@@ -10,7 +10,7 @@ Linux:
 
 
 Windows:
-(1) Abra o prompt de comando, navegue até os diretórios onde encontram-se os códigos fontes (arquivos .cpp e .h), e digite g++ -o lab4.exe main.cpp AVLTree.cpp Folha.cpp
+(1) Abra o prompt de comando, navegue até os diretórios onde encontram-se os códigos fontes (arquivos .cpp e .h), e digite g++ -o lab4.exe main.cpp RubroNegra.cpp Folha.cpp
 (Obs: É necessário possuir o compilador MinGW instalado).
 
 (2) Após ter executado o comando acima no seu prompt, será criado um arquivo executável com o nome lab4.exe.
